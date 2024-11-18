@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+</head>
+<body class=" bg-zinc-800 h-screen text-white">
+    <h1>Welcome <%= username %></h1>
+    <form method="post" action="/post">
+        <textarea class="text-black" placeholder="What's on your mind" name="content" id="content"></textarea>
+        <input type="submit" value="Create Post">
+    </form>
+    <div>
+        <% user.posts.forEach(function(post){ %>
+            <div>
+                <h1><%= user.username %></h1>
+                <p><%= post.content %></p>
+            </div>
+            </div>
+        <% }) %>
+</body>
+</html>
