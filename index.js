@@ -1,116 +1,118 @@
-const express = require("express")
-const app = express()
-const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
-const userModel = require("./models/user")
-const postModel = require("./models/post")
+const express = require("express");
+const http = require("http");
+const socketIo = require("socket.io");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
+const userModel = require("./models/user");
 
+const app = express();
+const server = http.createServer(app);
+const io = socketIo(server);
 
-const cookieParser = require("cookie-parser")
-const path = require("path")
+let loggedInUsers = [];
 
-app.set("view engine", "ejs")
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname, "public")))
-app.use(cookieParser())
+app.set("view engine", "ejs");
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-    res.render("registration")
-})
+// Routes
+app.get("/", (req, res) => res.render("registration"));
 
 app.post("/create", async (req, res) => {
-    const { username, email, password} = req.body;
+    const { username, email, password } = req.body;
+    const user = await userModel.findOne({ email });
+    if (user) return res.status(500).send("Email already exists");
 
-    const user = await userModel.findOne({email})
-    if(user) return res.status(500).send("Email already exist")
-        
-    bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(password, salt, async (err, hash) => {
-            const createdUser = await userModel.create({
-                username,
-                email,
-                password: hash
-            })
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
 
-            let token = jwt.sign({email: email, userid: createdUser._id}, "secret")
-            res.cookie("token", token)
-            res.redirect("/login")
-        });
-    });
-})
+    const createdUser = await userModel.create({ username, email, password: hash });
+    const token = jwt.sign({ email, userid: createdUser._id }, "secret");
+    res.cookie("token", token);
+    res.redirect("/login");
+});
 
-app.get("/login", (req, res) => {
-    res.render("login")
-})
+app.get("/login", (req, res) => res.render("login"));
 
-app.post("/login", async(req, res) => {
-    let user = await userModel.findOne({email: req.body.email})
-    if(!user) return res.status(500).send("Something went wrong")
-        bcrypt.compare(req.body.password, user.password, function(err, result) {
-            if(result){
-                let token = jwt.sign({email: user.email}, "secret")
-                res.cookie("token", token)
-                res.redirect("profile")
-            }
-                else res.send("Something Went Wrong")
-        });
-})
+app.post("/login", async (req, res) => {
+    const user = await userModel.findOne({ email: req.body.email });
+    if (!user) return res.status(500).send("Invalid credentials");
+
+    const isMatch = await bcrypt.compare(req.body.password, user.password);
+    if (!isMatch) return res.status(500).send("Invalid credentials");
+
+    const token = jwt.sign({ email: user.email, userid: user._id }, "secret");
+    res.cookie("token", token);
+    res.redirect("/profile");
+});
 
 app.get("/profile", async (req, res) => {
     const token = req.cookies.token;
     if (!token) return res.redirect("/login");
 
     try {
-        const loginuser = jwt.verify(token, "secret");
-        const user = await userModel.findOne({ email: loginuser.email });
+        const loginUser = jwt.verify(token, "secret");
+        const user = await userModel.findOne({ email: loginUser.email });
         if (!user) return res.redirect("/login");
 
-        res.render("profile", { username: user.username });
-    } catch (error) {
+        const loginTime = new Date().toLocaleTimeString();
+        const userStatus = "Online";
+
+        loggedInUsers = loggedInUsers.filter((u) => u.email !== user.email);
+        loggedInUsers.push({ username: user.username, email: user.email, loginTime, status: userStatus, socketId: null });
+
+        res.render("profile", { username: user.username, users: loggedInUsers });
+    } catch {
         res.redirect("/login");
     }
 });
 
-app.post("/post", async (req, res) => {
-    try {
-        const token = req.cookies.token;
-        if (!token) return res.status(401).send("Unauthorized");
-
-        // Decode the email from the token
+app.get("/logout", (req, res) => {
+    const token = req.cookies.token;
+    if (token) {
         const decoded = jwt.verify(token, "secret");
-        const user = await userModel.findOne({ email: decoded.email });
-        if (!user) return res.status(404).send("User not found");
+        const email = decoded.email;
 
-        const { content } = req.body;
-
-        // Create a new post
-        const post = await postModel.create({
-            user: user._id,
-            content,
-        });
-
-        // Update the user's posts array
-        user.posts.push(post._id);
-        await user.save();
-
-        res.redirect("/profile");
-    } catch (error) {
-        console.error("Error creating post:", error);
-        res.status(500).send("An error occurred");
+        io.emit("user_logged_out", email);
+        res.clearCookie("token");
     }
+    res.redirect("/login");
 });
 
-app.get("/profile", async (req, res) => {
-    const decoded = jwt.verify(token, "secret");
-    const user = await userModel.findOne({ email: decoded.email }).populate("posts");
-    res.render("profile", { username: user.username, user });
-})
+// Socket.IO Logic
+io.on("connection", (socket) => {
+    console.log("A user connected:", socket.id);
 
-app.get("/logout", (req, res) => {
-    res.cookie("token", "")
-    res.send("/login")
-})
+    socket.on("user_logged_in", (user) => {
+        const index = loggedInUsers.findIndex((u) => u.email === user.email);
+        if (index !== -1) {
+            loggedInUsers[index].socketId = socket.id;
+        } else {
+            loggedInUsers.push({ ...user, socketId: socket.id });
+        }
+        io.emit("update_user_list", loggedInUsers);
+    });
 
+    // Listen for private messages from the sender
+    socket.on("send_private_message", (data) => {
+        const { message, recipientSocketId, username } = data;
 
-app.listen(3000)
+        console.log(`Message from ${username} to ${recipientSocketId}: ${message}`);
+
+        // Send the message to the recipient
+        io.to(recipientSocketId).emit("receive_private_message", {
+            message: message,
+            sender: username,
+        });
+    });
+
+    socket.on("disconnect", () => {
+        loggedInUsers = loggedInUsers.filter((u) => u.socketId !== socket.id);
+        io.emit("update_user_list", loggedInUsers);
+    });
+});
+
+server.listen(4000, () => console.log("Server is running on port 4000"));

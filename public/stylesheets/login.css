@@ -79,6 +79,8 @@ h3 {
 }
 
 input {
+    color: white;
+    padding: 5px;
     height: 40px;
     align-self: stretch;
 
@@ -97,6 +99,7 @@ input {
 }
 
 .btn-login {
+    margin-top: 10px;
     color: white;
     border: none;
     display: flex;
@@ -106,7 +109,10 @@ input {
     align-items: center;
     gap: 10px;
     align-self: stretch;
-
     border-radius: 10px;
     background: var(--Primary, #A81DFF);
+}
+
+a{
+    color: #CB77FF;
 }

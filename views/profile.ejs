@@ -4,15 +4,253 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 </head>
-<body class=" bg-zinc-800 h-screen text-white">
-    <h1>Welcome <%= username %></h1>
+<body>
+    <!-- <h1>Welcome <%= username %></h1>
     <form method="post" action="/post">
         <textarea class="text-black" placeholder="What's on your mind" name="content" id="content"></textarea>
         <input type="submit" value="Create Post">
     </form>
-    <div>
+    <div> -->
+
+        
+
+
+
+
+    <div class="container">
+        <div class="part1">
+            <div class="sub1">
+                <div class="icon1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.7116 9.64514C17.7159 9.58105 17.7159 9.51673 17.7116 9.45264V2.83431C17.6815 1.40004 16.4968 0.260403 15.0624 0.285975H2.94409C1.50973 0.260403 0.325002 1.40004 0.294922 2.83431V14.2376C0.325002 15.6719 1.50973 16.8115 2.94409 16.786H8.54492C8.59677 16.7904 8.6489 16.7904 8.70075 16.786C10.6726 19.2742 14.2883 19.6929 16.7766 17.721C19.2649 15.7491 19.6835 12.1334 17.7116 9.64514ZM2.94409 14.9526C2.52533 14.969 2.16692 14.6549 2.12826 14.2376V2.8343C2.16692 2.417 2.52533 2.10289 2.94409 2.1193H15.0624C15.4812 2.10289 15.8396 2.417 15.8783 2.8343V8.09597C14.1036 7.12498 11.9485 7.16182 10.2081 8.19289C8.4677 9.22395 7.40004 11.0964 7.39909 13.1193C7.40047 13.7427 7.50262 14.3618 7.70159 14.9526H2.94409ZM9.23242 13.1193C9.23242 15.2709 10.9766 17.0151 13.1282 17.0151C15.2778 17.0101 17.019 15.2688 17.0241 13.1193C17.0241 10.9677 15.2799 9.22347 13.1282 9.22347C10.9766 9.22347 9.23242 10.9677 9.23242 13.1193ZM13.1283 5.78598H4.87826C4.372 5.78598 3.9616 5.37558 3.9616 4.86932C3.9616 4.36306 4.372 3.95265 4.87826 3.95265H13.1283C13.6345 3.95265 14.0449 4.36306 14.0449 4.86932C14.0449 5.37558 13.6345 5.78598 13.1283 5.78598ZM14.967 14.036C14.967 13.7916 14.8693 13.5573 14.6958 13.3851L14.045 12.7435V11.286C14.045 10.7797 13.6346 10.3693 13.1283 10.3693C12.622 10.3693 12.2116 10.7797 12.2116 11.286V13.1193C12.2102 13.363 12.3059 13.5971 12.4775 13.7701L13.3941 14.6868C13.5663 14.8603 13.8006 14.958 14.045 14.958C14.2894 14.958 14.5237 14.8603 14.6958 14.6868C14.8693 14.5147 14.967 14.2804 14.967 14.036Z" fill="#E3E3E3"/>
+                      </svg>
+                </div>
+
+                <div class="icon2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.1225 18.5813C17.4037 17.7577 18.9192 15.587 18.9062 13.1618C18.9035 11.931 18.5015 10.7344 17.7604 9.75176C17.7926 9.66978 17.8112 9.58308 17.8154 9.49509L17.7604 2.87676C17.7303 1.44249 16.5455 0.302853 15.1112 0.328425H2.99286C1.5585 0.302853 0.373769 1.44249 0.343689 2.87676V14.2801C0.373769 15.7144 1.5585 16.854 2.99286 16.8284H8.59369C8.64554 16.8328 8.69767 16.8328 8.74952 16.8284C10.2887 18.7027 12.8413 19.4048 15.1225 18.5813ZM14.0937 4.91177C14.0937 4.40551 13.6833 3.99511 13.177 3.99511H4.92703C4.42077 3.99511 4.01036 4.40551 4.01036 4.91177C4.01036 5.41803 4.42077 5.82844 4.92703 5.82844H13.177C13.6833 5.82844 14.0937 5.41803 14.0937 4.91177ZM15.6612 11.5943C15.8347 11.7664 15.9323 12.0007 15.9323 12.2451C15.9323 12.4895 15.8347 12.7238 15.6612 12.8959L12.9112 15.6459C12.7382 15.8175 12.504 15.9132 12.2604 15.9118H12.1137C11.8243 15.8634 11.5755 15.6794 11.4445 15.4168L10.5279 13.5834C10.3507 13.289 10.3531 12.9203 10.534 12.6281C10.7149 12.336 11.044 12.1696 11.3865 12.1971C11.7291 12.2245 12.0274 12.4412 12.1595 12.7584L12.5079 13.4551L14.3412 11.6218C14.5102 11.4389 14.7464 11.3326 14.9954 11.3274C15.2443 11.3222 15.4847 11.4186 15.6612 11.5943ZM13.177 7.43261C14.1414 7.43701 15.0885 7.68955 15.927 8.16594V2.88594C15.9152 2.68159 15.8225 2.49035 15.6695 2.35447C15.5164 2.21859 15.3155 2.14925 15.1112 2.16177H2.99285C2.57069 2.13557 2.20642 2.45481 2.17702 2.87677V14.2801C2.20642 14.7021 2.57069 15.0213 2.99285 14.9951H7.75035C7.15983 13.2467 7.44762 11.321 8.52351 9.82163C9.59939 8.3223 11.3316 7.43301 13.177 7.43261ZM13.177 9.26592C15.3286 9.26592 17.0728 11.0101 17.0728 13.1618C17.0678 15.3113 15.3265 17.0525 13.177 17.0576C11.0254 17.0576 9.28118 15.3134 9.28118 13.1618C9.28118 11.0101 11.0254 9.26592 13.177 9.26592Z" fill="#E3E3E3"/>
+                      </svg>
+                </div>
+            </div>
+
+            <div class="sub2">
+                <div class="icon3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.375 4.625C11.375 2.55393 9.69607 0.875 7.625 0.875C5.55393 0.875 3.875 2.55393 3.875 4.625C3.875 6.69607 5.55393 8.375 7.625 8.375H6.875C3.14708 8.375 0.125 11.3971 0.125 15.125C0.125 15.5392 0.460786 15.875 0.875 15.875H14.375C14.7892 15.875 15.125 15.5392 15.125 15.125C15.125 11.3971 12.1029 8.375 8.375 8.375H7.625C8.61956 8.375 9.57339 7.97991 10.2767 7.27665C10.9799 6.57339 11.375 5.61956 11.375 4.625ZM6.87501 9.87501C4.26472 9.87434 2.0504 11.7915 1.67751 14.375H13.5725C13.1996 11.7915 10.9853 9.87434 8.37501 9.87501H6.87501ZM5.37502 4.62502C5.37502 5.86766 6.38237 6.87502 7.62502 6.87502C8.22175 6.87502 8.79405 6.63796 9.21601 6.21601C9.63796 5.79405 9.87502 5.22175 9.87502 4.62502C9.87502 3.38237 8.86766 2.37502 7.62502 2.37502C6.38237 2.37502 5.37502 3.38237 5.37502 4.62502Z" fill="#E3E3E3"/>
+                      </svg>
+                </div>
+
+                <div class="icon4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+                        <path d="M12.4481 11.346C12.5617 11.4587 12.6255 11.6119 12.6255 11.7718C12.6255 11.9317 12.5617 12.085 12.4481 12.1976C12.3355 12.3112 12.1822 12.375 12.0223 12.375C11.8624 12.375 11.7092 12.3112 11.5966 12.1976L6.62502 7.22009L1.65348 12.1976C1.54088 12.3112 1.38759 12.375 1.22769 12.375C1.06779 12.375 0.914507 12.3112 0.801903 12.1976C0.688371 12.085 0.624512 11.9317 0.624512 11.7718C0.624512 11.6119 0.688371 11.4587 0.801903 11.346L5.77944 6.37451L0.801903 1.40297C0.649783 1.25085 0.590374 1.02914 0.646053 0.821336C0.701733 0.613536 0.864043 0.451227 1.07184 0.395547C1.27964 0.339867 1.50136 0.399277 1.65348 0.551397L6.62502 5.52893L11.5966 0.551397C11.8317 0.31624 12.213 0.31624 12.4481 0.551397C12.6833 0.786553 12.6833 1.16782 12.4481 1.40297L7.4706 6.37451L12.4481 11.346Z" fill="#E3E3E3"/>
+                      </svg>
+                </div>
+
+                <div class="icon5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 18 15" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.975003 2.09541H16.275C16.7445 2.09541 17.1251 1.78024 17.1251 1.39146C17.1251 1.00268 16.7445 0.687515 16.275 0.687515H0.975003C0.505559 0.687515 0.125 1.00268 0.125 1.39146C0.125 1.78024 0.505559 2.09541 0.975003 2.09541ZM17.1251 13.3586C17.1251 13.7473 16.7445 14.0625 16.275 14.0625H0.975003C0.505559 14.0625 0.125 13.7473 0.125 13.3586C0.125 12.9698 0.505559 12.6546 0.975003 12.6546H16.275C16.7445 12.6546 17.1251 12.9698 17.1251 13.3586ZM0.975003 7.02304H16.275C16.7445 7.02304 17.1251 7.33821 17.1251 7.72699C17.1251 8.11577 16.7445 8.43093 16.275 8.43093H0.975003C0.505559 8.43093 0.125 8.11577 0.125 7.72699C0.125 7.33821 0.505559 7.02304 0.975003 7.02304Z" fill="#E3E3E3"/>
+                      </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="part2">
+            <div class="sub3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18" fill="none" class="search">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.1253 11.6066L17.9839 16.4562C18.1542 16.6252 18.25 16.8551 18.25 17.095C18.25 17.3349 18.1542 17.5649 17.9839 17.7339C17.8149 17.9042 17.5849 18 17.345 18C17.1051 18 16.8752 17.9042 16.7062 17.7339L11.8566 12.8753C10.5992 13.8623 9.04644 14.3978 7.44791 14.3958C3.47262 14.3958 0.25 11.1732 0.25 7.19791C0.25 3.22262 3.47262 0 7.44791 0C11.4232 0 14.6458 3.22262 14.6458 7.19791C14.6478 8.79644 14.1123 10.3492 13.1253 11.6066ZM7.44791 1.79945C4.46643 1.79945 2.04947 4.21641 2.04947 7.19789C2.04947 10.1794 4.46643 12.5963 7.44791 12.5963C10.4294 12.5963 12.8463 10.1794 12.8463 7.19789C12.8463 4.21641 10.4294 1.79945 7.44791 1.79945Z" fill="#A5A5A5"/>
+                    </svg>
+                    <input type="text" placeholder="Search People ...
+                    " class="search-text">   
+            </div>
+            <hr>
+
+            <div class="sub4">
+                <div class="active-users">
+                    <% users.forEach((user, index) => { %>
+                        <div class="<%= index === 0 ? 'inner2' : 'inner' + (index + 2) %>" data-socketid="<%= user.socketId %>">
+                            <div class="innerpart1">
+                                <img src="" alt="User Image">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15" fill="none">
+                                    <circle cx="7.75" cy="7.5" r="7" fill="#9D00FF" stroke="#E3E3E3" />
+                                </svg>
+                            </div>
+                            <div class="innerpart2">
+                                <div class="text">
+                                    <div class="text-sub">
+                                        <p><%= user.username %></p> <!-- Display user's name -->
+                                    </div>
+                                    <p class="time"><%= user.loginTime %></p> <!-- Display login time -->
+                                </div>
+                                <p class="typing"><%= user.status %></p> <!-- Display user status -->
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <!-- <div class="part3"> -->
+            <!-- <div class="sub5">
+                <div class="chat">
+                    <img src="" alt="">
+                    <div class="chatprofile">
+                        <p class="name"><%= username %></p>
+                        <p class="status">Online</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="heroimage">
+                <div class="chatframereceiver">
+                    <div class="receiverframe">
+                        <img src="" alt="" class="profileimagereceiver">
+                        <div class="receiverdata">
+                            <span class="receiverspan">Lorem Lorem BHai Bgmi Hdmi
+                            </span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="chatframesender">
+                    <div class="senderframe">
+                        <img src="" alt="" class="profileimagesender">
+                        <div class="senderdata">
+                            <span class="senderspan">Chala ja bhai abhi bhi time hai
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chatframereceiver">
+                    <div class="receiverframe">
+                        <img src="" alt="" class="profileimagereceiver">
+                        <div class="receiverdata">
+                            <span class="receiverspan">Lorem Lorem BHai Bgmi Hdmi
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chatframesender">
+                    <div class="senderframe">
+                        <img src="" alt="" class="profileimagesender">
+                        <div class="senderdata">
+                            <span class="senderspan">Chala ja bhai abhi bhi time hai
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            
+            <div class="sub6">
+                <div class="messagebox">
+                    <div class="messagefield">
+                        <input type="text" placeholder="Type a Message Here ..." class="message">
+                    </div>
+                    <div class="messagebutton">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5103 8.19953L1.309 0.0988671C0.983221 -0.0692269 0.588044 -0.0229449 0.30992 0.215877C0.0329408 0.45643 -0.0703271 0.841014 0.0488985 1.18796L2.70412 9.00059L0.0939021 16.8132C0.00313213 17.0809 0.0434019 17.3757 0.202645 17.6093C0.361888 17.8429 0.621603 17.988 0.903968 18.0013C1.04487 18.0005 1.1836 17.9666 1.309 17.9023L17.5103 9.80166C17.8109 9.64766 18 9.33834 18 9.00059C18 8.66285 17.8109 8.35353 17.5103 8.19953ZM2.4431 15.3011L4.24325 9.90067H13.244L2.4431 15.3011ZM2.4431 2.70007L4.24325 8.10051H13.289L2.4431 2.70007Z" fill="#E3E3E3"/>
+                          </svg>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="heroimage" id="chat-container">
+                <!-- Messages will be dynamically inserted here -->
+            </div>
+        
+            <div class="part3">
+                <div class="sub5">
+                    <div class="chat">
+                        <img src="" alt="User Image">
+                        <div class="chatprofile">
+                            <p class="name"><%= username %></p>
+                            <p class="status">Online</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="heroimage" id="chat-container">
+                    <!-- Messages will be dynamically inserted here -->
+                </div>
+            
+                <div class="sub6">
+                    <div class="messagebox">
+                        <div class="messagefield">
+                            <input
+                                type="text"
+                                placeholder="Type a Message Here ..."
+                                class="message"
+                                id="message-input"
+                            />
+                        </div>
+                        <div class="messagebutton">
+                            <button id="send-message">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M17.5103 8.19953L1.309 0.0988671C0.983221 -0.0692269 0.588044 -0.0229449 0.30992 0.215877C0.0329408 0.45643 -0.0703271 0.841014 0.0488985 1.18796L2.70412 9.00059L0.0939021 16.8132C0.00313213 17.0809 0.0434019 17.3757 0.202645 17.6093C0.361888 17.8429 0.621603 17.988 0.903968 18.0013C1.04487 18.0005 1.1836 17.9666 1.309 17.9023L17.5103 9.80166C17.8109 9.64766 18 9.33834 18 9.00059C18 8.66285 17.8109 8.35353 17.5103 8.19953ZM2.4431 15.3011L4.24325 9.90067H13.244L2.4431 15.3011ZM2.4431 2.70007L4.24325 8.10051H13.289L2.4431 2.70007Z"
+                                        fill="#E3E3E3"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+     const socket = io(); // Initialize socket.io client
+
+// When a user logs in, emit the login data (user's name and socket ID)
+socket.emit("user_logged_in", {
+    username: "<%= username %>",
+    email: "<%= email %>",  // You can pass the email as well to identify the user
+});
+
+// Listen for incoming private messages
+socket.on("receive_private_message", (data) => {
+    const chatContainer = document.getElementById("chat-container");
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("message");
+    messageElement.innerHTML = `<strong>${data.sender}:</strong> ${data.message}`;
+    chatContainer.appendChild(messageElement);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+});
+
+// Send message when button is clicked
+document.getElementById("send-message").addEventListener("click", () => {
+    const messageInput = document.getElementById("message-input");
+    const message = messageInput.value.trim();
+    if (message === "") return;
+
+    const recipientSocketId = getRecipientSocketId(); // Get the recipient's socket ID
+    socket.emit("send_private_message", {
+        message: message,
+        recipientSocketId: recipientSocketId,
+        username: "<%= username %>",  // Sender's name
+    });
+
+    messageInput.value = "";
+});
+
+// Get the recipient's socket ID from the clicked user
+function getRecipientSocketId() {
+    const recipient = document.querySelector(".active-users .inner");
+    return recipient.getAttribute("data-socketid");
+}
+</script>
 </body>
 </html>

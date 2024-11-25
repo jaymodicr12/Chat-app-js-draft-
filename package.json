@@ -3,11 +3,13 @@
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "ejs": "^3.1.10",
+    "expree": "^2.1.0",
     "express": "^4.21.1",
     "html": "^1.0.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.8.1",
-    "path": "^0.12.7"
+    "mongoose": "^8.8.2",
+    "path": "^0.12.7",
+    "socket.io": "^4.8.1"
   },
   "name": "chat",
   "version": "1.0.0",

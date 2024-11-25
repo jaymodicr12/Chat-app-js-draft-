@@ -5,10 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/stylesheets/login.css">
-  <title>Login</title>
+  <title>Registration</title>
 </head>
 
 <body>
+  <form method="post" action="/create">
   <div class="app">
     <h1>Welcome To Chat Application</h1>
     <div class="auth-card">
@@ -16,20 +17,21 @@
       <hr class="hr-card">
       <div class="input-card">
         <label for="">Username</label>
-        <input type="text">
+        <input type="text" placeholder="Username" name="username">
       </div>
       <div class="input-card">
         <label for="">Email</label>
-        <input type="text">
+        <input type="email" placeholder="Email" name="email">
       </div>
       <div class="input-card">
         <label for="">Password</label>
-        <input type="text">
+        <input type="password" placeholder="Password" name="password">
       </div>
-      <span class="acc-info">Already have an account ?</span>
-      <button class="btn-login">Create Account</button>
+      <span class="acc-info"><a href="/login">Already have an account ?</a></span>
+      <input type="submit" value="Create Account" class="btn-login">
     </div>
   </div>
+</form>
 </body>
 
 </html>
